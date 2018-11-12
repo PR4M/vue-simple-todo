@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/app.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <title>Vue Todo App</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Todo Application
+                        </div>
+                        <form action="" class="card-block m-0" @submit.prevent="add(todo)">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Add todo" v-model="todo">
+                                <span class="input-group-bt">
+                                    <button class="btn btn-primary" type="submit" :disabled="!isTodoValid"> Add</button>
+                                </span>
+                            </div>
+                        </form>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" v-for="todo in todos">
+                                {{ todo }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/app.js"></script>
+</body>
+</html>
