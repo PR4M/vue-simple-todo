@@ -35,16 +35,38 @@
                             </div>
                         </form>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item" v-for="todo in todos">
-                                <label class="form-check-label">
-                                    <input class="checkbox" type="checkbox" name="" id="" v-model="todo.finished">
-                                </label>
-                                <span :class="{'todo-finished': todo.finished}">{{ todo.content }}</span>
-                                <div class="ml-auto btn-group">
-                                    <button class="btn btn-sm btn-danger" @click="remove(todo)">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                            <li class="list-group-item d-block" v-for="todo in todos">
+                                <!-- Add Todo -->
+                                <div class="d-flex" v-if="!todo.isEdited">
+                                    <label class="form-check-label">
+                                        <input class="checkbox" type="checkbox" name="" id="" v-model="todo.finished">
+                                    </label>
+                                    <span :class="{'todo-finished': todo.finished}"> {{ todo.content }}</span>
+                                    <div class="ml-auto btn-group">
+                                        <button class="btn btn-sm btn-primary" @click="edit(todo)" v-if="!isTodoBeingEdited">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" @click="remove(todo)">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                                <!-- Edit Todo  -->
+                                <form class="m-0" v-else @submit.prevent="update(todo)">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Edit" v-model="editTodo">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary" type="submit" :disabled="!isEditTodoValid">
+                                                <i class="fa fa-save"></i>
+                                            </button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-danger" type="submit" @click="remove(todo)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>
