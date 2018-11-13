@@ -10,9 +10,15 @@ var app = new Vue({
             if(!this.isTodoValid) {
                 return;
             }
-            this.todos.push(todo);
+            this.todos.push({
+                content: todo,
+                finished: false,
+            });
             
             this.todo = null;
+        },
+        remove(todo) {
+            this.todos = this.todos.filter(item => item != todo);
         },
     },
     computed: {
